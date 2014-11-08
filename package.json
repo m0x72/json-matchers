@@ -1,6 +1,6 @@
 {
   "name": "json-matchers",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Set of functions to (path-) match JSON objects by values or types",
   "main": "index.js",
   "scripts": {
