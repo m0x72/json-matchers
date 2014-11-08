@@ -1,0 +1,31 @@
+{
+  "name": "json-matchers",
+  "version": "0.0.1",
+  "description": "Set of functions to (path-) match JSON objects by values or types",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node test/test.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/m0x72/json-matchers.git"
+  },
+  "keywords": [
+    "json",
+    "matchers",
+    "rest",
+    "api"
+  ],
+  "author": "m0x72",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/m0x72/json-matchers/issues"
+  },
+  "homepage": "https://github.com/m0x72/json-matchers",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
