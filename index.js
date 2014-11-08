@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var assert = require('assert');
 
 
 // matcher for (fuzzy) value matching
