@@ -11,8 +11,9 @@ expectJSONTypes(data, types, path)
 - types: Object of types to test against
 - path: (optional) *String* Path to the types Object
   - Path is '.' seperated and may also contain either:
-    - '?': to match any object in a collection (array/object)
+    - '+': to match an object in a collection (array/object) at least once
     - '*': to match all objects in a collection
+    - '?': to match an object in a collection only if the matching types keys (level1 keys check only) exsist.
 
 
 ### expectJSONValues
@@ -22,11 +23,15 @@ expectJSONValues(data, values, path)
 - values: Object of values to test against
 - path: (optional) *String* Path to the types Object
   - Path is '.' seperated and may also contain either:
-    - '?': to match any object in a collection (array/object)
+    - '+': to match an object in a collection (array/object) at least once
     - '*': to match all objects in a collection
+    - '?': to match an object in a collection only if the matching types keys (level1 keys check only) exsist.
 
 ## Examples
 see *test.spec.js*
+
+## Todos
+Clean up and clarify `?`, `+`, `-` matcher logic (esp. `?`).
 
 ## Licencse
 MIT

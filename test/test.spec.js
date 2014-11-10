@@ -53,7 +53,69 @@ describe('matchers.expectJSONTypes', function(){
 
   });
 
-  it("matches some objects in collection", function(){
+  it("if object exsists in collection, matches type", function(){
+
+    var data = [
+      {
+        key: 1,
+        key2: {
+          key: "a",
+          key2: "b",
+          key3: "c"
+        }
+      },
+      {
+        key: 1,
+        // key2: {
+        //   key: "a",
+        //   key2: "b"
+        // }
+      },
+      {
+        key: 1,
+        // key2: {
+        //   key: "a",
+        //   key2: "b"
+        // }
+      }
+    ];
+
+    expect(matchers.expectJSONTypes(data, {key2: {key: String, key2: String}}, "?")).toBe(true);
+    expect(function(){
+      matchers.expectJSONTypes(data, {key2: {key: String, key4: String}}, "?").toThrow();
+    });
+
+
+    var data = [
+      {
+        key: 1,
+        // key2: {
+        //   key: "a",
+        //   key2: "b",
+        //   key3: "c"
+        // }
+      },
+      {
+        key: 1,
+        // key2: {
+        //   key: "a",
+        //   key2: "b"
+        // }
+      },
+      {
+        key: 1,
+        // key2: {
+        //   key: "a",
+        //   key2: "b"
+        // }
+      }
+    ];
+
+    expect(matchers.expectJSONTypes(data, {key2: {key: String, key2: String}}, "?")).toBe(true);
+
+  });
+
+  it("at least one objects in collection matches type", function(){
     var data = [
       {},
       {
@@ -65,15 +127,15 @@ describe('matchers.expectJSONTypes', function(){
       }
     ];
 
-    expect(matchers.expectJSONTypes(data, {key: String}, "?")).toBe(true);
+    expect(matchers.expectJSONTypes(data, {key: String}, "+")).toBe(true);
     expect(function(){
-      matchers.expectJSONTypes(data, {key2: Number}, "?").toThrow();
+      matchers.expectJSONTypes(data, {key2: Number}, "+").toThrow();
     });
-    expect(matchers.expectJSONTypes(data, {}, "?")).toBe(true);
-    expect(matchers.expectJSONTypes([{key: 123}], {}, "?")).toBe(true);
+    expect(matchers.expectJSONTypes(data, {}, "+")).toBe(true);
+    expect(matchers.expectJSONTypes([{key: 123}], {}, "+")).toBe(true);
   });
 
-  it("matches all objects in collection", function(){
+  it("all objects in collection match Type", function(){
     var data = [
       {},
       {
@@ -133,10 +195,10 @@ describe('matchers.expectJSONTypes', function(){
       ]
     };
 
-    expect(matchers.expectJSONTypes(data, {something: Number, more: String}, "key3.?.key.key.?")).toBe(true);
-    expect(matchers.expectJSONTypes(data, {something: Number, more: String}, "?.?.key.key.*")).toBe(true);
+    expect(matchers.expectJSONTypes(data, {something: Number, more: String}, "key3.+.key.key.+")).toBe(true);
+    expect(matchers.expectJSONTypes(data, {something: Number, more: String}, "+.+.key.key.*")).toBe(true);
     expect(function(){
-      matchers.expectJSONTypes(data, {something: Number, more: String}, "?.*.key.key.*").toThrow();
+      matchers.expectJSONTypes(data, {something: Number, more: String}, "+.*.key.key.*").toThrow();
     });
 
   });
